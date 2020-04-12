@@ -2,6 +2,8 @@
 单线程爬虫
 
 
-engine 启动
-fetch 请求页面
-parser 解析页面
+单线程修改为简单的并发模式
+
+engine 启动<br>
+fetch 请求页面<br>
+parser 解析页面<br>

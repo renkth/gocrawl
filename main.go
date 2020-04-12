@@ -3,20 +3,21 @@ package main
 import (
 	"crawlZhenai/engine"
 	"crawlZhenai/parser"
-	"log"
+	"crawlZhenai/scheduler"
 )
 
-func check(err error){
-	if err != nil {
-		log.Println(err)
-	}
-	return
-}
-
-func main(){
+func main() {
 	url := "http://www.zhenai.com/zhenghun"
-	engine.Run(engine.Request{
-		Url:       	url,
+	e := engine.ConcurrentEngine{
+		Scheduler:   &scheduler.SimpleScheduler{},
+		WorkerCount: 100,
+	}
+	e.Run(engine.Request{
+		Url:        url,
 		ParserFunc: parser.ParseCityList,
 	})
+	//engine.SimpleEngine{}.Run(engine.Request{
+	//	Url:       	url,
+	//	ParserFunc: parser.ParseCityList,
+	//})
 }
